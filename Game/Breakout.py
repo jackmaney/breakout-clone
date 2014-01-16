@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath("."))
 
 
-class Breakout:
+class Breakout(object):
 
     def __init__(self):
         pass

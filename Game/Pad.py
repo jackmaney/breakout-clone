@@ -4,4 +4,4 @@ from Game.Shared import *
 class Pad(GameObject):
 
     def __init__(self, position, sprite):
-        GameObject.__init__(self, position, GameConstants.PAD_SIZE, sprite)
+        super(Pad, self).__init__(position, GameConstants.PAD_SIZE, sprite)

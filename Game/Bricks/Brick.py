@@ -5,8 +5,9 @@ from Game.Shared import GameConstants
 class Brick(GameObject):
 
     def __init__(self, position, sprite, game):
-        self.__game = game
-        GameObject.__init__(self, position, GameConstants.BRICK_SIZE, sprite)
+        self.game = game
+
+        super(Brick, self).__init__(position, GameConstants.BRICK_SIZE, sprite)
 
         self.hitPoints = 100
         self.lives = 1

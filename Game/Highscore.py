@@ -1,5 +1,5 @@
 
-class Highscore:
+class Highscore(object):
 
     def __init__(self):
         pass

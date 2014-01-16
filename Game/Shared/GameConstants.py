@@ -1,5 +1,5 @@
 
-class GameConstants:
+class GameConstants(object):
 
     SCREEN_SIZE = (800, 600)
     BRICK_SIZE = (100, 30)
