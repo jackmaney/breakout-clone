@@ -23,7 +23,8 @@ class Level(object):
 
         x, y = 0, 0
 
-        file = os.path.join(".","Game","Assets", "Levels", "level" + str(level) + ".dat")
+        file = os.path.join(".", "Game", "Assets", "Levels",
+                            "level" + str(level) + ".dat")
         for line in open(file):
             for char in line:
                 brick = None
