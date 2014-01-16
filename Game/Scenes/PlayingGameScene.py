@@ -13,9 +13,17 @@ class PlayingGameScene(Scene):
         super(PlayingGameScene, self).render()
 
         for ball in self.game.balls:
+
+            for brick in self.game.level.bricks:
+                if ball.intersects(brick):
+                    brick.hit()
+                    ball.changeDirection(brick)
+                    break
+
             ball.updatePosition()
 
             self.game.screen.blit(ball.sprite, ball.position)
 
         for brick in self.game.level.bricks:
-            self.game.screen.blit(brick.sprite, brick.position)
+            if not brick.isDestroyed():
+                self.game.screen.blit(brick.sprite, brick.position)
