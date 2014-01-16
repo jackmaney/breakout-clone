@@ -1,4 +1,4 @@
-from Game.Scene.Scene import Scene
+from Game.Scenes.Scene import Scene
 
 
 class HighscoreScene(Scene):

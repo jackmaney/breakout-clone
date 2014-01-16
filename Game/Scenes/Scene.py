@@ -1,3 +1,6 @@
+import pygame
+import sys
+
 
 class Scene(object):
 
@@ -9,7 +12,11 @@ class Scene(object):
         pass
 
     def handleEvents(self, events):
-        pass
+
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit(0)
 
     def clearText(self):
         self.texts = []
