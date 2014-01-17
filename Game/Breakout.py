@@ -8,6 +8,9 @@ import math
 class Breakout(object):
 
     def __init__(self):
+
+        self.paused = True
+
         self.lives = 5
         self.score = 0
 
@@ -50,6 +53,7 @@ class Breakout(object):
     def start(self):
 
         while True:
+
             self.clock.tick(60)
 
             self.screen.fill((0, 0, 0))

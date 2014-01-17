@@ -10,6 +10,13 @@ class PlayingGameScene(Scene):
     def handleEvents(self, events):
         super(PlayingGameScene, self).handleEvents(events)
 
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONUP:
+                self.game.paused = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.game.paused = True
+
     def render(self):
         super(PlayingGameScene, self).render()
 
@@ -30,7 +37,8 @@ class PlayingGameScene(Scene):
                     ball.changeDirection(brick)
                     break
 
-            ball.updatePosition()
+            if not self.game.paused:
+                ball.updatePosition()
 
             ball.render()
 
@@ -38,5 +46,6 @@ class PlayingGameScene(Scene):
             if not brick.isDestroyed():
                 brick.render()
 
-        self.game.pad.updatePosition()
+        if not self.game.paused:
+            self.game.pad.updatePosition()
         self.game.pad.render()
