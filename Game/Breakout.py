@@ -2,6 +2,7 @@ import pygame
 from Game import *
 from Game.Scenes import *
 from Game.Shared import GameConstants
+import math
 
 
 class Breakout(object):
@@ -13,7 +14,7 @@ class Breakout(object):
         self.level = Level(self)
         self.level.load(0)
 
-        self.pad = Pad((0, 0), None)
+        self.pad = Pad( (math.floor((GameConstants.SCREEN_SIZE[0] - pad.size[0])/2.0, pad.size[1]), self)
         self.balls = [
             Ball((400, 400), self)]
 

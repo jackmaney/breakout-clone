@@ -64,6 +64,3 @@ class GameObject(object):
             self.position[1] = 0
         elif self.outOfBoundsBelow():
             self.position[1] = GameConstants.SCREEN_SIZE[1] - self.size[1]
-
-    def __eq__(self, other):
-        return self.position == other.position and self.size == other.size
