@@ -12,4 +12,6 @@ class GameConstants(object):
         "Game", "Assets", "Bricks", "speedbrick.png")
     LIFEBRICK_IMAGE = os.path.join("Game", "Assets", "Bricks", "lifebrick.png")
 
+    BEEP_SOUND = os.path.join("Game", "Assets", "Sounds", "beep.ogg")
+
     PADDING_BELOW_PAD = 2

@@ -48,7 +48,10 @@ class Breakout(object):
 
         self.currentScene = self.scenes["playingGame"]
 
-        self.sounds = {}
+        beep = pygame.mixer.Sound(GameConstants.BEEP_SOUND)
+        self.sounds = {
+            "beep": beep
+        }
 
     def start(self):
 

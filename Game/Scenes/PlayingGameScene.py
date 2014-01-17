@@ -25,6 +25,7 @@ class PlayingGameScene(Scene):
         for ball in balls:
 
             if ball.intersects(self.game.pad):
+                self.game.playSound("beep")
                 ball.changeDirection(self.game.pad)
 
             for otherBall in balls:
