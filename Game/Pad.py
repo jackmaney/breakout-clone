@@ -13,3 +13,7 @@ class Pad(GameObject):
 
         super(Pad, self).__init__(position, game,
                                   GameConstants.PAD_SIZE, sprite)
+
+    def updatePosition(self):
+        self.position = (pygame.mouse.get_pos()[0], self.position[1])
+        self.keepInWindow()

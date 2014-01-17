@@ -17,6 +17,9 @@ class PlayingGameScene(Scene):
 
         for ball in balls:
 
+            if ball.intersects(self.game.pad):
+                ball.changeDirection(self.game.pad)
+
             for otherBall in balls:
                 if ball != otherBall and ball.intersects(otherBall):
                     ball.changeDirection(otherBall)
@@ -35,7 +38,5 @@ class PlayingGameScene(Scene):
             if not brick.isDestroyed():
                 brick.render()
 
-        self.game.pad.position = (
-            pygame.mouse.get_pos()[0], self.game.pad.position[1])
-        self.game.pad.keepInWindow()
+        self.game.pad.updatePosition()
         self.game.pad.render()
