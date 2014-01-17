@@ -15,7 +15,7 @@ class Breakout(object):
 
         self.pad = Pad((0, 0), None)
         self.balls = [
-            Ball((0, 0), self)]
+            Ball((400, 400), self)]
 
         pygame.init()
         pygame.mixer.init()
@@ -72,5 +72,14 @@ class Breakout(object):
 
     def reset(self):
         pass
+
+    def removeBrick(self, brick):
+
+        try:
+            self.level.bricks.remove(brick)
+        except ValueError:
+            # Not terribly graceful, but I don't want the game dying...
+            # will think of a better way
+            pass
 
 Breakout().start()

@@ -25,6 +25,8 @@ class Brick(GameObject):
 
     def hit(self):
         self.lives -= 1
+        if self.isDestroyed():
+            self.game.removeBrick(self)
 
     def getHitSound(self):
         pass
