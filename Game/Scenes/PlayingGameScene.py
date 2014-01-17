@@ -29,13 +29,13 @@ class PlayingGameScene(Scene):
 
             ball.updatePosition()
 
-            self.game.screen.blit(ball.sprite, ball.position)
+            ball.render()
 
         for brick in self.game.level.bricks:
             if not brick.isDestroyed():
-                self.game.screen.blit(brick.sprite, brick.position)
+                brick.render()
 
         self.game.pad.position = (
             pygame.mouse.get_pos()[0], self.game.pad.position[1])
         self.game.pad.keepInWindow()
-        self.game.screen.blit(self.game.pad.sprite, self.game.pad.position)
+        self.game.pad.render()
