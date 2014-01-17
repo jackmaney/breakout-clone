@@ -7,7 +7,6 @@ class Brick(GameObject):
 
     def __init__(self, position, game, color=(0, 255, 0),
                  sprite=pygame.Surface(GameConstants.BRICK_SIZE)):
-        self.game = game
         self.position = position
         self.color = color
         self.sprite = sprite
@@ -15,7 +14,8 @@ class Brick(GameObject):
         if color is not None:
             self.sprite.fill(color)
 
-        super(Brick, self).__init__(position, GameConstants.BRICK_SIZE, sprite)
+        super(Brick, self).__init__(position, game,
+                                    GameConstants.BRICK_SIZE, sprite)
 
         self.hitPoints = 100
         self.lives = 1

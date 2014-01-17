@@ -3,10 +3,11 @@ from Game.Shared.GameConstants import *
 
 class GameObject(object):
 
-    def __init__(self, position, size, sprite):
+    def __init__(self, position, game, size, sprite):
         self.position = position
         self.size = size
         self.sprite = sprite
+        self.game = game
 
     def intersectsXLeft(self, other):
 
@@ -56,11 +57,18 @@ class GameObject(object):
 
     def keepInWindow(self):
 
+        x, y = self.position
+
         if self.outOfBoundsLeft():
-            self.position[0] = 0
+            x = 0
         elif self.outOfBoundsRight():
-            self.position[0] = GameConstants.SCREEN_SIZE[0] - self.size[0]
+            x = GameConstants.SCREEN_SIZE[0] - self.size[0]
         elif self.outOfBoundsAbove():
-            self.position[1] = 0
+            y = 0
         elif self.outOfBoundsBelow():
-            self.position[1] = GameConstants.SCREEN_SIZE[1] - self.size[1]
+            y = GameConstants.SCREEN_SIZE[1] - self.size[1]
+
+        self.position = (x, y)
+
+    def render(self):
+        self.game.screen.blit(self.sprite, self.position)

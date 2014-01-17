@@ -8,7 +8,6 @@ class Ball(GameObject):
                  sprite=pygame.Surface(GameConstants.BALL_SIZE),
                  color=(255, 255, 255)):
 
-        self.game = game
         self.speed = 3
         self.increment = [2, 2]
         self.direction = [1, 1]
@@ -17,7 +16,8 @@ class Ball(GameObject):
         self.color = color
         self.sprite.fill(color)
 
-        super(Ball, self).__init__(position, GameConstants.BALL_SIZE, sprite)
+        super(Ball, self).__init__(position, game,
+                                   GameConstants.BALL_SIZE, sprite)
 
     def resetSpeed(self):
         self.speed = 3

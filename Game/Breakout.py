@@ -14,9 +14,15 @@ class Breakout(object):
         self.level = Level(self)
         self.level.load(0)
 
-        self.pad = Pad( (math.floor((GameConstants.SCREEN_SIZE[0] - pad.size[0])/2.0, pad.size[1]), self)
+        padX = math.floor(
+            (GameConstants.SCREEN_SIZE[0] - GameConstants.PAD_SIZE[0]) / 2.0)
+        padY = GameConstants.SCREEN_SIZE[1] - \
+            GameConstants.PAD_SIZE[1] - GameConstants.PADDING_BELOW_PAD
+
+        self.pad = Pad((padX, padY), self)
         self.balls = [
-            Ball((400, 400), self)]
+            Ball((400, 400), self)
+        ]
 
         pygame.init()
         pygame.mixer.init()

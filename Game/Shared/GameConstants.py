@@ -11,3 +11,5 @@ class GameConstants(object):
     SPEEDBRICK_IMAGE = os.path.join(
         "Game", "Assets", "Bricks", "speedbrick.png")
     LIFEBRICK_IMAGE = os.path.join("Game", "Assets", "Bricks", "lifebrick.png")
+
+    PADDING_BELOW_PAD = 2

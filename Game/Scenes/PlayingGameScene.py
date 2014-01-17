@@ -1,4 +1,5 @@
 from Game.Scenes.Scene import Scene
+import pygame
 
 
 class PlayingGameScene(Scene):
@@ -33,3 +34,8 @@ class PlayingGameScene(Scene):
         for brick in self.game.level.bricks:
             if not brick.isDestroyed():
                 self.game.screen.blit(brick.sprite, brick.position)
+
+        self.game.pad.position = (
+            pygame.mouse.get_pos()[0], self.game.pad.position[1])
+        self.game.pad.keepInWindow()
+        self.game.screen.blit(self.game.pad.sprite, self.game.pad.position)
