@@ -12,7 +12,13 @@ class PlayingGameScene(Scene):
     def render(self):
         super(PlayingGameScene, self).render()
 
-        for ball in self.game.balls:
+        balls = self.game.balls
+
+        for ball in balls:
+
+            for otherBall in balls:
+                if ball != otherBall and ball.intersects(otherBall):
+                    ball.changeDirection(otherBall)
 
             for brick in self.game.level.bricks:
                 if ball.intersects(brick):
