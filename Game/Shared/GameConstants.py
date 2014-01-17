@@ -7,6 +7,7 @@ class GameConstants(object):
     BRICK_SIZE = (100, 30)
     BALL_SIZE = (16, 16)
     PAD_SIZE = (139, 13)
+    PAD_MAX_SPEED = 10
 
     SPEEDBRICK_IMAGE = os.path.join(
         "Game", "Assets", "Bricks", "speedbrick.png")

@@ -15,5 +15,17 @@ class Pad(GameObject):
                                   GameConstants.PAD_SIZE, sprite)
 
     def updatePosition(self):
-        self.position = (pygame.mouse.get_pos()[0], self.position[1])
+        destinationX = pygame.mouse.get_pos()[0]
+
+        x = self.position[0]
+
+        if abs(self.position[0] - destinationX) <= GameConstants.PAD_MAX_SPEED:
+            x = destinationX
+        elif self.position[0] < destinationX:
+            x += GameConstants.PAD_MAX_SPEED
+        elif self.position[0] > destinationX:
+            x -= GameConstants.PAD_MAX_SPEED
+
+        self.position = (x, self.position[1])
+
         self.keepInWindow()
