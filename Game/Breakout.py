@@ -96,5 +96,3 @@ class Breakout(object):
             # Not terribly graceful, but I don't want the game dying...
             # will think of a better way
             pass
-
-Breakout().start()
