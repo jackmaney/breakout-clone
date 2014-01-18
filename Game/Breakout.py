@@ -1,4 +1,5 @@
 import pygame
+import numpy as np
 from Game import *
 from Game.Scenes import *
 from Game.Shared import GameConstants
@@ -22,9 +23,9 @@ class Breakout(object):
         padY = GameConstants.SCREEN_SIZE[1] - \
             GameConstants.PAD_SIZE[1] - GameConstants.PADDING_BELOW_PAD
 
-        self.pad = Pad((padX, padY), self)
+        self.pad = Pad(np.array([padX, padY], np.int32), self)
         self.balls = [
-            Ball((400, 400), self)
+            Ball(np.array([400, 400], np.int32), self)
         ]
 
         pygame.init()

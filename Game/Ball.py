@@ -1,5 +1,7 @@
 from Game.Shared import *
 import pygame
+import numpy as np
+import math
 
 
 class Ball(GameObject):
@@ -8,9 +10,8 @@ class Ball(GameObject):
                  sprite=pygame.Surface(GameConstants.BALL_SIZE),
                  color=(255, 255, 255)):
 
-        self.speed = 3
-        self.increment = [2, 2]
-        self.direction = [1, 1]
+        self.velocity = np.array(
+            [np.random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
         self.inMotion = 0
         self.sprite = sprite
         self.color = color
@@ -19,12 +20,8 @@ class Ball(GameObject):
         super(Ball, self).__init__(position, game,
                                    GameConstants.BALL_SIZE, sprite)
 
-    def resetSpeed(self):
-        self.speed = 3
-
-    def setMotion(self, isMoving):
-        self.inMotion = isMoving
-        self.resetSpeed()
+    def speed(self):
+        return math.sqrt(np.vectorize(lambda x: x * x)(self.velocity).sum())
 
     def changeDirection(self, other):
 
@@ -38,38 +35,34 @@ class Ball(GameObject):
         if yBelow:
             x = self.position[0]
             y = other.position[1] + other.size[1]
-            self.direction[1] *= -1
+            self.velocity[1] *= -1
         elif yAbove:
             x = self.position[0]
             y = other.position[1] - self.size[1]
-            self.direction[1] *= -1
+            self.velocity[1] *= -1
         elif xLeft:
             x = other.position[0] - self.size[0]
             y = self.position[1]
-            self.direction[0] *= -1
+            self.velocity[0] *= -1
         else:
             x = other.position[0] + other.size[0]
             y = self.position[1]
-            self.direction[0] *= -1
+            self.velocity[0] *= -1
 
         if x is not None and y is not None:
-            self.position = (x, y)
+            self.position = np.array([x, y], np.int32)
 
     # Moves ball
     def updatePosition(self):
-        newX = self.position[0] + self.increment[0] * \
-            self.speed * self.direction[0]
-        newY = self.position[1] + self.increment[1] * \
-            self.speed * self.direction[1]
 
-        self.position = [newX, newY]
+        self.position += self.velocity
 
         self.keepInWindow()
 
     def keepInWindow(self):
         if self.outOfBoundsLeft() or self.outOfBoundsRight():
-            self.direction[0] *= -1
+            self.velocity[0] *= -1
         elif self.outOfBoundsAbove() or self.outOfBoundsBelow():
-            self.direction[1] *= -1
+            self.velocity[1] *= -1
 
         super(Ball, self).keepInWindow()

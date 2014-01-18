@@ -1,6 +1,7 @@
 import os
 from Game.Bricks import *
 from Game.Shared.GameConstants import GameConstants
+import numpy as np
 
 
 class Level(object):
@@ -29,11 +30,11 @@ class Level(object):
             for char in line:
                 brick = None
                 if char == "1":
-                    brick = Brick((x, y), self.game)
+                    brick = Brick(np.array([x, y], np.int32), self.game)
                 elif char == "2":
-                    brick = SpeedBrick((x, y), self.game)
+                    brick = SpeedBrick(np.array([x, y], np.int32), self.game)
                 elif char == "3":
-                    brick = LifeBrick((x, y), self.game)
+                    brick = LifeBrick(np.array([x, y], np.int32), self.game)
 
                 if brick is not None:
                     self.bricks.append(brick)
