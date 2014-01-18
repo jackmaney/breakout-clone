@@ -1,4 +1,5 @@
 from Game.Scenes.Scene import Scene
+from Game.Shared import *
 import pygame
 
 
@@ -50,3 +51,10 @@ class PlayingGameScene(Scene):
         if not self.game.paused:
             self.game.pad.updatePosition()
         self.game.pad.render()
+
+        self.clearText()
+
+        self.addText("Score: " + str(self.game.score), x=0,
+                     y=GameConstants.SCREEN_SIZE[1] - 60, size=30)
+        self.addText("Lives: " + str(self.game.lives), x=0,
+                     y=GameConstants.SCREEN_SIZE[1] - 30, size=30)

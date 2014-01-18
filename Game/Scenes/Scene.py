@@ -9,7 +9,8 @@ class Scene(object):
         self.texts = []
 
     def render(self):
-        pass
+        for text in self.texts:
+            self.game.screen.blit(text["renderedText"], text["coordinates"])
 
     def handleEvents(self, events):
 
@@ -23,4 +24,6 @@ class Scene(object):
 
     def addText(self, text, x=0, y=0,
                 color=(255, 255, 255), background=(0, 0, 0), size=17):
-        pass
+        font = pygame.font.Font(None, size)
+        self.texts.append(
+            {"renderedText": font.render(text, True, color, background), "coordinates": (x, y)})
