@@ -18,12 +18,7 @@ class Breakout(object):
         self.level = Level(self)
         self.level.load(0)
 
-        padX = math.floor(
-            (GameConstants.SCREEN_SIZE[0] - GameConstants.PAD_SIZE[0]) / 2.0)
-        padY = GameConstants.SCREEN_SIZE[1] - \
-            GameConstants.PAD_SIZE[1] - GameConstants.PADDING_BELOW_PAD
-
-        self.pad = Pad(np.array([padX, padY], np.int32), self)
+        self.pad = Pad(self)
         self.balls = [
             Ball(np.array([400, 400], np.int32), self)
         ]

@@ -1,6 +1,7 @@
 from Game.Scenes.Scene import Scene
 from Game.Shared import *
 import pygame
+import numpy as np
 
 
 class PlayingGameScene(Scene):
@@ -39,8 +40,16 @@ class PlayingGameScene(Scene):
                     ball.changeDirection(brick)
                     break
 
-            if not self.game.paused:
+            if not self.game.paused and not ball.paused:
                 ball.updatePosition()
+
+            if ball.isDead():
+                self.game.paused = True
+                self.game.reduceLives()
+                ball.position = ball.initialPosition
+                ball.velocity = np.array(
+                    [np.random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
+                self.game.pad.reset()
 
             ball.render()
 
@@ -50,6 +59,7 @@ class PlayingGameScene(Scene):
 
         if not self.game.paused:
             self.game.pad.updatePosition()
+
         self.game.pad.render()
 
         self.clearText()

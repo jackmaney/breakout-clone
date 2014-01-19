@@ -11,11 +11,14 @@ class Ball(GameObject):
                  color=(255, 255, 255)):
 
         self.velocity = np.array(
-            [np.random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
+    [np.random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
+
+        self.initialPosition = position.copy()
         self.inMotion = 0
         self.sprite = sprite
         self.color = color
         self.sprite.fill(color)
+        self.paused = False
 
         super(Ball, self).__init__(position, game,
                                    GameConstants.BALL_SIZE, sprite)
@@ -55,9 +58,10 @@ class Ball(GameObject):
     # Moves ball
     def updatePosition(self):
 
-        self.position += self.velocity
+        if not self.paused:
+            self.position += self.velocity
 
-        self.keepInWindow()
+            self.keepInWindow()
 
     def keepInWindow(self):
         if self.outOfBoundsLeft() or self.outOfBoundsRight():
@@ -66,3 +70,6 @@ class Ball(GameObject):
             self.velocity[1] *= -1
 
         super(Ball, self).keepInWindow()
+
+    def isDead(self):
+        return self.position[1] + self.size[1] >= GameConstants.SCREEN_SIZE[1]

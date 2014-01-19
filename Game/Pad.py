@@ -4,9 +4,12 @@ import pygame
 
 class Pad(GameObject):
 
-    def __init__(self, position, game,
+    def __init__(self, game, position=None,
                  color=(255, 0, 255),
                  sprite = pygame.Surface(GameConstants.PAD_SIZE)):
+
+        if position is None:
+            position = GameConstants.PAD_INITIAL_POSITION
 
         if color is not None:
             sprite.fill(color)
@@ -29,3 +32,6 @@ class Pad(GameObject):
         self.position = (x, self.position[1])
 
         self.keepInWindow()
+
+    def reset(self):
+        self.position = GameConstants.PAD_INITIAL_POSITION
