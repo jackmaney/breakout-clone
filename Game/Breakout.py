@@ -81,7 +81,15 @@ class Breakout(object):
         self.lives += 1
 
     def reset(self):
-        pass
+        self.paused = True
+        self.lives = 5
+        self.score = 0
+        self.level.load(0)
+        self.pad.reset()
+        self.balls = [
+            Ball(np.array([400, 400], np.int32), self)
+        ]
+        self.changeScene(self.scenes["playingGame"])
 
     def removeBrick(self, brick):
 

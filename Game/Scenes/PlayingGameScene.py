@@ -22,6 +22,9 @@ class PlayingGameScene(Scene):
     def render(self):
         super(PlayingGameScene, self).render()
 
+        if self.game.lives <= 0:
+            self.game.changeScene(self.game.scenes["gameOver"])
+
         balls = self.game.balls
 
         for ball in balls:
