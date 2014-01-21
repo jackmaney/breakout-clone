@@ -62,7 +62,7 @@ class Breakout(object):
             pygame.display.update()
 
     def changeScene(self, scene):
-        self.currentScene = scene
+        self.currentScene = self.scenes[scene]
 
     def increaseScore(self, score):
         self.score += score
@@ -88,7 +88,6 @@ class Breakout(object):
         self.balls = [
             Ball(np.array([400, 400], np.int32), self)
         ]
-        self.changeScene(self.scenes["playingGame"])
 
     def removeBrick(self, brick):
 

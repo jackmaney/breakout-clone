@@ -3,7 +3,6 @@ import numpy as np
 
 
 class GameConstants(object):
-
     SCREEN_SIZE = (800, 600)
     BRICK_SIZE = (100, 30)
     BALL_SIZE = (16, 16)
@@ -19,3 +18,5 @@ class GameConstants(object):
     LIFEBRICK_IMAGE = os.path.join("Game", "Assets", "Bricks", "lifebrick.png")
 
     BEEP_SOUND = os.path.join("Game", "Assets", "Sounds", "beep.wav")
+
+    HIGHSCORE_FILE = os.path.join("Game", "Assets", "Highscore", "highscore.dat")
