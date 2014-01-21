@@ -5,7 +5,7 @@ import pygame
 
 class SpeedBrick(Brick):
 
-    def __init__(self, position, game, color=None,
-                 sprite=pygame.image.load(GameConstants.SPEEDBRICK_IMAGE)):
-        super(SpeedBrick, self).__init__(position,
-                                         game, color=None, sprite=sprite)
+    def __init__(self, position, game, points=300, color=None,
+        sprite=pygame.image.load(GameConstants.SPEEDBRICK_IMAGE)):
+
+        super(SpeedBrick, self).__init__(position, game, points=points, color=None, sprite=sprite)

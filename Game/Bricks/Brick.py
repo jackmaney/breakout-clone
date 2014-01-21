@@ -4,12 +4,12 @@ import pygame
 
 
 class Brick(GameObject):
-
-    def __init__(self, position, game, color=(0, 255, 0),
+    def __init__(self, position, game, points=100, color=(0, 255, 0),
                  sprite=pygame.Surface(GameConstants.BRICK_SIZE)):
         self.position = position
         self.color = color
         self.sprite = sprite
+        self.points = points
 
         if color is not None:
             self.sprite.fill(color)
@@ -26,6 +26,7 @@ class Brick(GameObject):
     def hit(self):
         self.lives -= 1
         if self.isDestroyed():
+            self.game.score += self.points
             self.game.removeBrick(self)
 
     def getHitSound(self):
