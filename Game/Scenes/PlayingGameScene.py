@@ -40,7 +40,7 @@ class PlayingGameScene(Scene):
 
             for brick in self.game.level.bricks:
                 if ball.intersects(brick):
-                    brick.hit()
+                    brick.hit(ball)
                     ball.changeDirection(brick)
                     break
 

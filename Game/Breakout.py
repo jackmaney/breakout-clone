@@ -15,7 +15,7 @@ class Breakout(object):
         self.score = 0
 
         self.level = Level(self)
-        self.level.load(0)
+        self.level.loadRandom()
 
         self.pad = Pad(self)
         self.balls = [

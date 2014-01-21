@@ -23,7 +23,7 @@ class Brick(GameObject):
     def isDestroyed(self):
         return self.lives <= 0
 
-    def hit(self):
+    def hit(self, ball):
         self.lives -= 1
         if self.isDestroyed():
             self.game.score += self.points

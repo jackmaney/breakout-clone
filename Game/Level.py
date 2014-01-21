@@ -2,6 +2,7 @@ import os
 from Game.Bricks import *
 from Game.Shared.GameConstants import GameConstants
 import numpy as np
+import random
 
 
 class Level(object):
@@ -17,6 +18,39 @@ class Level(object):
 
     def loadNextLevel(self):
         pass
+
+    def loadRandom(self):
+        self.bricks = []
+
+        x, y = 0, 0
+
+        maxBricks = int(GameConstants.SCREEN_SIZE[0] / GameConstants.BRICK_SIZE[0])
+
+        numRows = random.randint(1, 5)
+
+        for row in list(range(0, numRows)):
+            for brick in list(range(0, maxBricks)):
+
+                brickType = random.randint(0,3)
+
+                brick = None
+
+                if brickType == 1:
+                    brick = Brick(np.array([x, y], np.int32), self.game)
+                elif brickType == 2:
+                    brick = SpeedBrick(np.array([x, y], np.int32), self.game)
+                elif brickType == 3:
+                    brick = LifeBrick(np.array([x, y], np.int32), self.game)
+
+                if brick is not None:
+                    self.bricks.append(brick)
+                    self.amountOfBricksLeft += 1
+
+                x += GameConstants.BRICK_SIZE[0]
+
+            x = 0
+            y += GameConstants.BRICK_SIZE[1]
+
 
     def load(self, level):
         self.currentLevel = level
