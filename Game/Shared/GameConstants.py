@@ -13,6 +13,8 @@ class GameConstants(object):
         [np.round((SCREEN_SIZE[0] - PAD_SIZE[0]) / 2.0),
          SCREEN_SIZE[1] - PAD_SIZE[1] - PADDING_BELOW_PAD], np.int32)
 
+    BRICK_PADDING_PX = 1
+
     SPEEDBRICK_IMAGE = os.path.join(
         "Game", "Assets", "Bricks", "speedbrick.png")
     LIFEBRICK_IMAGE = os.path.join("Game", "Assets", "Bricks", "lifebrick.png")
