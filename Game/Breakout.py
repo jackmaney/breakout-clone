@@ -3,7 +3,6 @@ import numpy as np
 from Game import *
 from Game.Scenes import *
 from Game.Shared import GameConstants
-import math
 
 
 class Breakout(object):

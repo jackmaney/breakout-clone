@@ -2,6 +2,7 @@ from Game.Shared import *
 import pygame
 import numpy as np
 import math
+import random
 
 
 class Ball(GameObject):
@@ -11,7 +12,7 @@ class Ball(GameObject):
                  color=(255, 255, 255)):
 
         self.velocity = np.array(
-    [np.random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
+    [random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
 
         self.initialPosition = position.copy()
         self.inMotion = 0
@@ -47,7 +48,7 @@ class Ball(GameObject):
             x = other.position[0] - self.size[0]
             y = self.position[1]
             self.velocity[0] *= -1
-        else:
+        elif xRight:
             x = other.position[0] + other.size[0]
             y = self.position[1]
             self.velocity[0] *= -1
