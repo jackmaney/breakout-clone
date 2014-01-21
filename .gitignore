@@ -39,3 +39,6 @@ nosetests.xml
 .idea
 
 highscore.dat
+
+# OSX
+.DS_Store

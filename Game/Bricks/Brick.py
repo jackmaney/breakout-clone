@@ -12,18 +12,12 @@ class Brick(GameObject):
         self.points = points
 
         if color is not None:
-            self.sprite.fill((0,0,0))
+            self.sprite.fill((0, 0, 0))
 
             width, height = self.sprite.get_size()
             padding = GameConstants.BRICK_PADDING_PX
 
             pygame.draw.rect(self.sprite, color, pygame.Rect(padding,padding,width - 2 * padding, height - 2 * padding))
-
-            # Border
-            #pygame.draw.rect(self.sprite, (0, 0, 255), pygame.Rect(0, 0, padding, height))
-            #pygame.draw.rect(self.sprite, (0, 0, 255), pygame.Rect(0, height - padding, width, padding))
-            #pygame.draw.rect(self.sprite, (0, 0, 255), pygame.Rect(width - padding, 0, padding, height))
-            #pygame.draw.rect(self.sprite, (0, 0, 255), pygame.Rect(0, 0, width, padding))
 
         super(Brick, self).__init__(position, game,
                                     GameConstants.BRICK_SIZE, sprite)
