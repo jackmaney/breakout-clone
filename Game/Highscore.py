@@ -4,25 +4,30 @@ import hashlib
 
 class Highscore(object):
     def __init__(self):
-        self.highscore = self.load()
+        self.highscore = Highscore.loadScores()
 
     def getScores(self):
         pass
 
-    def load(self):
+    @staticmethod
+    def loadScores():
         highScores = []
 
-        with open(GameConstants.HIGHSCORE_FILE) as f:
-            for line in f:
-                name, score, md5hash = line.split('[::]')
-                md5hash = md5hash.replace("\n", "")
+        try:
+            with open(GameConstants.HIGHSCORE_FILE) as f:
+                for line in f:
+                    name, score, md5hash = line.split('[::]')
+                    md5hash = md5hash.replace("\n", "")
 
-                if str(hashlib.md5(str.encode(str(name + score + "pygamebreakoutclone"))).hexdigest()) == str(md5hash):
-                    highScores.append({
-                        "name": str(name),
-                        "score": str(score),
-                        "hash": str(md5hash)
-                    })
+                    if str(hashlib.md5(str.encode(str(name + score + "pygamebreakoutclone"))).hexdigest()) == str(
+                            md5hash):
+                        highScores.append({
+                            "name": str(name),
+                            "score": str(score),
+                            "hash": str(md5hash)
+                        })
+        except IOError:
+            open(GameConstants.HIGHSCORE_FILE, "w").close()
 
         # Schwartzian Transform (aka Decorate, Sort, Undecorate)
 
