@@ -2,6 +2,7 @@ from Game.Scenes.Scene import Scene
 from Game.Shared import *
 import pygame
 import numpy as np
+import random
 
 
 class PlayingGameScene(Scene):
@@ -51,7 +52,7 @@ class PlayingGameScene(Scene):
                 self.game.reduceLives()
                 ball.position = ball.initialPosition
                 ball.velocity = np.array(
-                    [np.random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
+                    [random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
                 self.game.pad.reset()
 
             ball.render()
