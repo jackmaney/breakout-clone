@@ -88,6 +88,7 @@ class Breakout(object):
         self.balls = [
             Ball(np.array([400, 400], np.int32), self)
         ]
+        self.changeScene("playingGame")
 
     def removeBrick(self, brick):
 

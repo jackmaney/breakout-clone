@@ -4,10 +4,7 @@ import hashlib
 
 class Highscore(object):
     def __init__(self):
-        self.highscore = Highscore.loadScores()
-
-    def getScores(self):
-        pass
+        self.scores = Highscore.loadScores()
 
     @staticmethod
     def loadScores():
@@ -44,10 +41,10 @@ class Highscore(object):
     def add(self, name, score):
         md5hash = hashlib.md5((str(name + str(score) + "pygamebreakoutclone")).encode("utf-8"))
 
-        self.highscore.append({"name": name, "score": score, "hash": md5hash.hexdigest()})
+        self.scores.append({"name": name, "score": score, "hash": md5hash.hexdigest()})
 
         with open(GameConstants.HIGHSCORE_FILE, "w") as f:
-            for score_dict in self.highscore:
+            for score_dict in self.scores:
                 f.write(score_dict["name"] + "[::]"
                         + str(score_dict["score"]) + "[::]"
-                        + str(score_dict["hash"]))
+                        + str(score_dict["hash"]) + "\n")
