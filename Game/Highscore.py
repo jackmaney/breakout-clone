@@ -31,6 +31,7 @@ class Highscore(object):
         highScores = [(s["score"], s["name"], s["hash"]) for s in highScores]
 
         highScores.sort()
+        highScores.reverse()
 
         highScores = [{"score": s[0], "name": s[1], "hash": s[2]} for s in highScores]
 

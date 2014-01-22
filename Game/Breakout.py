@@ -41,7 +41,7 @@ class Breakout(object):
             "menuScene": MenuScene(self)
         }
 
-        self.currentScene = self.scenes["playingGame"]
+        self.currentScene = self.scenes["menuScene"]
 
         beep = pygame.mixer.Sound(GameConstants.BEEP_SOUND)
         self.sounds = {
@@ -83,7 +83,7 @@ class Breakout(object):
         self.paused = True
         self.lives = 5
         self.score = 0
-        self.level.load(0)
+        self.level.loadRandom()
         self.pad.reset()
         self.balls = [
             Ball(np.array([400, 400], np.int32), self)

@@ -20,7 +20,8 @@ class HighscoreScene(Scene):
 
             y += 30
 
-        self.addText("Press any key to start a new game", x, y + 60, size=30)
+        self.addText("Press Escape to quit", x, y + 60, size=30)
+        self.addText("or any other key to start a new game", x, y+100, size=30)
 
         super(HighscoreScene, self).render()
 
@@ -29,4 +30,8 @@ class HighscoreScene(Scene):
 
         for event in events:
             if event.type == pygame.KEYDOWN:
-                self.game.reset()
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    exit(0)
+                else:
+                    self.game.reset()
