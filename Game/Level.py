@@ -33,11 +33,11 @@ class Level(object):
         for row in list(range(0, numRows)):
             for brick in list(range(0, maxBricks)):
 
-                brickType = random.randint(0,3)
+                brickType = random.randint(0, 4)
 
                 brick = None
 
-                if brickType == 1 or numSpecialBricks > 3:
+                if brickType == 1 or numSpecialBricks > 6:
                     brick = Brick(np.array([x, y], np.int32), self.game)
                 elif brickType == 2:
                     brick = SpeedBrick(np.array([x, y], np.int32), self.game)
@@ -45,6 +45,8 @@ class Level(object):
                 elif brickType == 3:
                     brick = LifeBrick(np.array([x, y], np.int32), self.game)
                     numSpecialBricks += 1
+                elif brickType == 4:
+                    brick =BallSpawningBrick(np.array([x, y], np.int32), self.game)
 
                 if brick is not None:
                     self.bricks.append(brick)

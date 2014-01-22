@@ -14,7 +14,8 @@ class Ball(GameObject):
         self.velocity = np.array(
     [random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
 
-        self.initialPosition = position.copy()
+
+        self.initialPosition = np.array(position, np.int32).copy()
         self.inMotion = 0
         self.sprite = sprite
         self.color = color
