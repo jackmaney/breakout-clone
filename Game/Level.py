@@ -17,7 +17,7 @@ class Level(object):
         self.amountOfBricksLeft -= 1
 
     def loadNextLevel(self):
-        pass
+        self.loadRandom()
 
     def loadRandom(self):
         self.bricks = []
@@ -27,17 +27,19 @@ class Level(object):
         maxBricks = int(GameConstants.SCREEN_SIZE[0] / GameConstants.BRICK_SIZE[0])
 
         numSpecialBricks = 0
+        maxNumSpecialBricks = 3
+        maxNumRows = 3
 
-        numRows = random.randint(2, 8)
+        numRows = random.randint(2, maxNumRows)
 
-        for row in list(range(0, numRows)):
-            for brick in list(range(0, maxBricks)):
+        for i in list(range(0, numRows)):
+            for j in list(range(0, maxBricks)):
 
                 brickType = random.randint(0, 4)
 
                 brick = None
 
-                if brickType == 1 or numSpecialBricks > 6:
+                if brickType == 1 or numSpecialBricks > maxNumSpecialBricks:
                     brick = Brick(np.array([x, y], np.int32), self.game)
                 elif brickType == 2:
                     brick = SpeedBrick(np.array([x, y], np.int32), self.game)
@@ -57,7 +59,6 @@ class Level(object):
 
             x = 0
             y += GameConstants.BRICK_SIZE[1]
-
 
     def load(self, level):
         self.currentLevel = level

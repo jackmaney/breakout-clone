@@ -14,13 +14,16 @@ class Breakout(object):
         self.lives = 5
         self.score = 0
 
+        self.pad = None
+        self.resetPad()
+
         self.level = Level(self)
         self.level.loadRandom()
 
-        self.pad = Pad(self)
-        self.balls = [
-            Ball(np.array([400, 400], np.int32), self)
-        ]
+
+
+        self.balls = None
+        self.resetBalls()
 
         pygame.init()
         pygame.mixer.init()
@@ -83,11 +86,9 @@ class Breakout(object):
         self.paused = True
         self.lives = 5
         self.score = 0
+        self.resetPad()
+        self.resetBalls()
         self.level.loadRandom()
-        self.pad.reset()
-        self.balls = [
-            Ball(np.array([400, 400], np.int32), self)
-        ]
         self.changeScene("playingGame")
 
     def removeBrick(self, brick):
@@ -98,3 +99,11 @@ class Breakout(object):
             # Not terribly graceful, but I don't want the game dying...
             # will think of a better way
             pass
+
+    def resetBalls(self):
+        self.balls = [
+            Ball(self)
+        ]
+
+    def resetPad(self):
+        self.pad = Pad(self)

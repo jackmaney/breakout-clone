@@ -6,23 +6,34 @@ import random
 
 
 class Ball(GameObject):
-
-    def __init__(self, position, game,
+    def __init__(self, game, position=None, velocity=None,
                  sprite=pygame.Surface(GameConstants.BALL_SIZE),
                  color=(255, 255, 255)):
 
-        self.velocity = np.array(
-    [random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
-
-
-        self.initialPosition = np.array(position, np.int32).copy()
-        self.inMotion = 0
         self.sprite = sprite
+        self.velocity = None
+        if velocity is None:
+            self.resetVelocity()
+        else:
+            self.velocity = np.array(velocity, np.int32)
+
+        self.position = None
+        if position is None:
+            x = game.pad.position[0] + int((game.pad.sprite.get_size()[0] / 2.0) - \
+                                           (self.sprite.get_size()[0] / 2.0))
+            y = game.pad.position[1] - self.sprite.get_size()[1] - 1
+            self.position = np.array([x, y], np.int32)
+        else:
+            self.position = np.array(position, np.int32)
+
+        self.initialPosition = self.position.copy()
+        self.inMotion = 0
+
         self.color = color
         self.sprite.fill(color)
         self.paused = False
 
-        super(Ball, self).__init__(position, game,
+        super(Ball, self).__init__(self.position, game,
                                    GameConstants.BALL_SIZE, sprite)
 
     def speed(self):
@@ -75,3 +86,8 @@ class Ball(GameObject):
 
     def isDead(self):
         return self.position[1] + self.size[1] >= GameConstants.SCREEN_SIZE[1]
+
+    def resetVelocity(self):
+        self.velocity = np.array(
+            [random.choice(list(range(-10, 0)) + list(range(1, 10))),
+             np.random.randint(-10, -1)])

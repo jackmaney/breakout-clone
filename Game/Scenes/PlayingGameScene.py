@@ -21,7 +21,15 @@ class PlayingGameScene(Scene):
                     self.game.paused = True
 
     def render(self):
+
         super(PlayingGameScene, self).render()
+
+        if len(self.game.level.bricks) == 0:
+            self.game.paused = True
+            self.game.resetPad()
+            self.game.resetBalls()
+
+            self.game.level.loadNextLevel()
 
         if self.game.lives <= 0:
             self.game.changeScene("gameOver")
@@ -50,10 +58,10 @@ class PlayingGameScene(Scene):
             if ball.isDead():
                 self.game.paused = True
                 self.game.reduceLives()
-                ball.position = ball.initialPosition
-                ball.velocity = np.array(
-                    [random.choice(list(range(-6, 0)) + list(range(1, 7))), np.random.randint(1, 5)])
-                self.game.pad.reset()
+                for b in self.game.balls:
+                    b.position = ball.initialPosition
+                    b.resetVelocity()
+                self.game.resetPad()
 
             ball.render()
 
