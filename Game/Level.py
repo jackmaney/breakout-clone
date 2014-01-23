@@ -47,6 +47,7 @@ class Level(object):
                     numSpecialBricks += 1
                 elif brickType == 4:
                     brick =BallSpawningBrick(np.array([x, y], np.int32), self.game)
+                    numSpecialBricks += 1
 
                 if brick is not None:
                     self.bricks.append(brick)

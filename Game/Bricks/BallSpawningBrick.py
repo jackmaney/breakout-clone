@@ -20,7 +20,7 @@ class BallSpawningBrick(Brick):
     def hit(self, ball):
 
         super(BallSpawningBrick,self).hit(ball)
-        
+
         positionX = self.position[0] + int(GameConstants.BRICK_SIZE[0] / 2.0) - int(GameConstants.BALL_SIZE[0] / 2.0)
         positionY = self.position[1] + int(GameConstants.BRICK_SIZE[1] / 2.0) - int(GameConstants.BALL_SIZE[1] / 2.0)
 
