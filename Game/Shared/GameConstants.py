@@ -22,5 +22,6 @@ class GameConstants(object):
     LIFEBRICK_IMAGE = os.path.join("Game", "Assets", "Bricks", "lifebrick.png")
 
     BEEP_SOUND = os.path.join("Game", "Assets", "Sounds", "beep.wav")
+    HITTING_WALL_SOUND = os.path.join("Game", "Assets", "Sounds", "click_sound_1.wav")
 
     HIGHSCORE_FILE = os.path.join("Game", "Assets", "Highscore", "highscore.dat")

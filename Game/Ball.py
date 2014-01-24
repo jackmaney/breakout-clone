@@ -78,8 +78,11 @@ class Ball(GameObject):
 
     def keepInWindow(self):
         if self.outOfBoundsLeft() or self.outOfBoundsRight():
+            self.game.playSound("hittingWall")
             self.velocity[0] *= -1
         elif self.outOfBoundsAbove() or self.outOfBoundsBelow():
+            if self.outOfBoundsAbove():
+                self.game.playSound("hittingWall")
             self.velocity[1] *= -1
 
         super(Ball, self).keepInWindow()

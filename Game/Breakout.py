@@ -43,8 +43,10 @@ class Breakout(object):
         self.currentScene = self.scenes["menuScene"]
 
         beep = pygame.mixer.Sound(GameConstants.BEEP_SOUND)
+        hittingWall = pygame.mixer.Sound(GameConstants.HITTING_WALL_SOUND)
         self.sounds = {
-            "beep": beep
+            "beep": beep,
+            "hittingWall": hittingWall
         }
 
     def start(self):
