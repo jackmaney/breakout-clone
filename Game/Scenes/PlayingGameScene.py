@@ -58,8 +58,8 @@ class PlayingGameScene(Scene):
             if ball.isDead():
                 self.game.paused = True
                 self.game.reduceLives()
+                self.game.repositionBalls()
                 for b in self.game.balls:
-                    b.position = ball.initialPosition
                     b.resetVelocity()
                 self.game.resetPad()
 

@@ -15,6 +15,8 @@ class GameConstants(object):
 
     BRICK_PADDING_PX = 1
 
+    VERTICAL_PAD_BALL_BUFFER = 20
+    HORIZONTAL_BALL_BUFFER = 20
     SPEEDBRICK_IMAGE = os.path.join(
         "Game", "Assets", "Bricks", "speedbrick.png")
     LIFEBRICK_IMAGE = os.path.join("Game", "Assets", "Bricks", "lifebrick.png")

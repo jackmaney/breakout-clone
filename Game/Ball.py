@@ -21,7 +21,7 @@ class Ball(GameObject):
         if position is None:
             x = game.pad.position[0] + int((game.pad.sprite.get_size()[0] / 2.0) - \
                                            (self.sprite.get_size()[0] / 2.0))
-            y = game.pad.position[1] - self.sprite.get_size()[1] - 1
+            y = game.pad.position[1] - self.sprite.get_size()[1] - GameConstants.VERTICAL_PAD_BALL_BUFFER
             self.position = np.array([x, y], np.int32)
         else:
             self.position = np.array(position, np.int32)

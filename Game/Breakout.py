@@ -6,7 +6,6 @@ from Game.Shared import GameConstants
 
 
 class Breakout(object):
-
     def __init__(self):
 
         self.paused = True
@@ -19,8 +18,6 @@ class Breakout(object):
 
         self.level = Level(self)
         self.level.loadRandom()
-
-
 
         self.balls = None
         self.resetBalls()
@@ -54,7 +51,6 @@ class Breakout(object):
     def start(self):
 
         while True:
-
             self.clock.tick(60)
 
             self.screen.fill((0, 0, 0))
@@ -99,6 +95,38 @@ class Breakout(object):
             # Not terribly graceful, but I don't want the game dying...
             # will think of a better way
             pass
+
+    def repositionBalls(self):
+        new = []
+
+        centerX = int(GameConstants.SCREEN_SIZE[0] / 2.0) - int(GameConstants.BALL_SIZE[0] / 2.0)
+        initialX = centerX
+
+        numBalls = len(self.balls)
+        y = self.pad.position[1] - GameConstants.BALL_SIZE[1] - GameConstants.VERTICAL_PAD_BALL_BUFFER
+
+        if numBalls % 2 == 1 and numBalls > 1:
+            # The center of the screen cuts right through the (int(numBalls/2) + 1)^th ball.
+            # So, we have half of a ball-width, int(numBalls/2) full ball-widths,
+            # and int(numBalls/2) - 1 horizontal paddings.
+
+            initialX -= int(GameConstants.BALL_SIZE[0] / 2.0) - int(numBalls / 2) * GameConstants.BALL_SIZE[0] - int(
+                numBalls / 2) * GameConstants.HORIZONTAL_BALL_BUFFER
+
+        elif numBalls % 2 == 0:
+            # The first numBalls/2 are to the left of the center of the screen.
+            # But we also have the horizontal buffer in between...
+
+            initialX -= (numBalls / 2) * (GameConstants.BALL_SIZE[0] + GameConstants.HORIZONTAL_BALL_BUFFER)
+
+        x = initialX
+
+        for i in list(range(numBalls)):
+            new.append(Ball(self, position=[x, y]))
+            x += GameConstants.BALL_SIZE[0] + GameConstants.HORIZONTAL_BALL_BUFFER
+
+        self.balls = new
+
 
     def resetBalls(self):
         self.balls = [
