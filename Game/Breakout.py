@@ -17,7 +17,6 @@ class Breakout(object):
         self.resetPad()
 
         self.level = Level(self)
-        self.level.loadRandom()
 
         self.balls = None
         self.resetBalls()
@@ -84,7 +83,7 @@ class Breakout(object):
         self.score = 0
         self.resetPad()
         self.resetBalls()
-        self.level.loadRandom()
+        self.level.load(0)
         self.changeScene("playingGame")
 
     def removeBrick(self, brick):
